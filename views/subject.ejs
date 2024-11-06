@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Collapsible Nav</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: black;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content:space-between;
+            align-items: center;
+        }
+        nav a, nav button {
+            background-color: white;
+            color: black;
+            text-decoration: none;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+        nav a:hover, nav button:hover {
+            background-color: #333;
+            color: white;
+        }
+        .nav-heading{
+            position: absolute;
+            left: 20px;
+            font-size: 30px;
+        }
+        /* Hamburger Menu Icon */
+        .menu-icon {
+            display: none;
+            background-color: white;
+            color: black;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Responsive Menu */
+        .nav-items {
+            display: flex;
+            flex-direction: row;
+            /* align-items: flex-end; */
+        }
+
+        /* Hide the menu items by default on smaller screens */
+        .nav-items.mobile {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            background-color: black;
+            top: 60px; /* Below the nav */
+            right: 20px;
+            z-index: 1000;
+            padding: 10px;
+        }
+        .nav-items.mobile a, .nav-items.mobile button {
+            display: block;
+            margin: 10px 0;
+        }
+
+        /* Main Heading */
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Scrollable Container */
+        .container {
+            width: 100%;
+            height: 400px; /* Adjust height as per your need */
+            overflow-y: scroll;
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .container h2 {
+            margin-bottom: 15px;
+        }
+        .container h2 a{
+            text-decoration: none;
+            color: #000;
+        }
+
+        /* Modal Popup Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            width: 300px;
+            text-align: center;
+        }
+        .modal-content button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: black;
+            color: white;
+        }
+        .modal-content button:hover {
+            background-color: #333;
+        }
+
+        /* .sections {
+   margin-top: 20px; 
+   
+} */
+.section{
+    padding: 20px 20px;
+    margin: 10px 10px;
+    border:1px solid #000;
+    transition: all 0.5s ;
+}
+
+
+    
+.section:hover {
+    transform: scale(1.01);
+    background-color: #ff5722;
+    color: #000;
+    font-weight: 700;
+}
+.section strong {
+    margin-bottom: 10px;
+}
+.section a {
+    font-size: 1rem;
+}
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-items {
+                display: none;
+            }
+            .menu-icon {
+                display: block;
+            }
+            .nav-items.mobile {
+                display: flex;
+            }
+            .nav-heading{
+                right:0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+   
+<!-- Navigation Bar -->
+<nav>
+    <div class="left-section">
+        <button class="menu-icon" id="menuIcon">☰ Menu</button> <!-- Hamburger Icon -->
+    </div>
+    <h1 class="nav-heading">Semester: <%= subject.semesterId.name %></h1>
+    <div class="nav-items" id="navItems">
+        <a href="/home">Go Back</a>
+        <form method="post" id="deleteBtn" action="/home/<%= subject._id %>/?_method=DELETE">
+        <button>delete</button>
+        </form>
+        <a href="/subject/<%= subject._id %>/add">Add Note</a>
+    </div>
+    
+</nav>
+
+<!-- Main Page Content -->
+<h1>Subject: <%= subject.name %></h1>
+
+<!-- Scrollable Container -->
+<div class="container">
+    
+    <h2>Notes</h2>
+    <ul >
+      <% subject.notes.forEach(note => { %>
+        <li class="section">
+            <strong><%= note.title %></strong> 
+            <a href="<%= note.filePath %>">Download PDF</a>
+        </li>
+      <% }) %>
+    </ul>
+    <!-- Large content will go here. The container will scroll. -->
+</div>
+
+<!-- Modal Popup for Confirmation -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <p>This will permanently delete the item. Are you sure?</p>
+        <button onclick="deleteItem()">Yes, Delete</button>
+        <button onclick="closeModal()">Cancel</button>
+    </div>
+</div>
+
+<!-- JavaScript for Modal and Responsive Menu -->
+<script>
+    const deleteBtn = document.getElementById('deleteBtn');
+    const modal = document.getElementById('modal');
+    const menuIcon = document.getElementById('menuIcon');
+    const navItems = document.getElementById('navItems');
+
+    // Open the modal
+    deleteBtn.addEventListener('click', () => {
+        modal.style.display = 'flex'; // Show the modal
+    });
+
+    // Close the modal
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    // Function to simulate the delete action
+    function deleteItem() {
+        alert("Item Deleted!"); // Placeholder for delete logic
+        closeModal();
+    }
+
+    // Toggle the responsive menu
+    menuIcon.addEventListener('click', () => {
+        if (navItems.classList.contains('mobile')) {
+            navItems.classList.remove('mobile');
+        } else {
+            navItems.classList.add('mobile');
+        }
+    });
+</script>
+
+</body>
+</html>

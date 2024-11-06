@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Apni Library</title>
+    <link rel="stylesheet" href="/stylesheet/about.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <h2 style="color: #fff;">Apni Library</h2>
+        </div>
+        <div class="menu-btn" onclick="toggleMenu()">&#9776;</div> <!-- Menu button (hamburger icon) -->
+        <ul class="nav-links">
+            <li><a href="http://localhost:3000/home">Home</a></li>
+            <li><a href="http://localhost:3000/about">About</a></li>
+             <li><a href="http://localhost:3000/signin">Sign-In</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Page - About Content -->
+    <div class="about-content">
+        <div class="about-text">
+            <h2>About Apni Library</h2>
+            <p> This is our website, Here we provides you previous years question papers with their written answers
+                of BCA. This library site is easy to use and work on it. You can also Sign in in this site or if you
+                already have an then you can simply just login into your account...
+            </p>
+        </div>
+    </div>
+
+    <!-- Second Page -->
+    <div class="second-page">
+        <h2>Our Library Gallery</h2>
+        <div class="library-images">
+            <img src="/images/book1.jpg" alt="Library Image 1">
+            <img src="/images/book2.jpg" alt="Library Image 2">
+            <img src="/images/book3.jpg" alt="Library Image 3">
+        </div>
+        <button class="follow-btn">Follow for More</button>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2023 Apni Library. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript function to toggle menu
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+</script>
+</body>
+</html>

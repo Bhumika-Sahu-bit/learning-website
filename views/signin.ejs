@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="/stylesheet/signin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <a href="http://localhost:3000/home" class="back-button">back to home</a>
+
+    <!-- Create Account Form -->
+    <div class="container">
+        <h2>Create Account</h2>
+        <form action = "/register" method="post">
+            <!-- Name Field -->
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Full Name" name = "fullname" required>
+            </div>
+
+            <!-- Email Field -->
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" placeholder="Email" name = "email" required>
+            </div>
+
+            <!-- Password Field -->
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Password" name ="password" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit">Create Account</button>
+            <div class="register">
+                <p>Do you have an account ?<a href="http://localhost:3000/login"> Log-in</a></p>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

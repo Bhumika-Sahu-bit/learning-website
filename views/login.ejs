@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheet/login.css">
+
+</head>
+<body>
+
+    <a href="http://localhost:3000/home" class="back-button">back to home</a>
+
+
+    <div class="container">
+        <h2 class="title">Login</h2>
+        <form action="/login" method="post" class="form-container">
+            <div class="input-box email">
+                <input type="email"  id="email-input" required placeholder="E-mail" name="email">
+                <img src="https://cdn-icons-png.flaticon.com/512/6325/6325109.png" alt="user-image" width="25px">
+            </div>
+            <div class="input-box password">
+                <input type="password"  id="password-input" required placeholder="Password" name ="password">
+                <img src="https://cdn-icons-png.flaticon.com/512/2489/2489659.png" alt="lock-image" width="22px">
+            </div>
+            <div class="remember-forgot">
+                <div class="remember">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                <div class="forgot">
+                    <a href="#">forgot Password ?</a>
+                </div>
+            </div>
+            <div class="button">
+                <button class="login">Login</button>
+            </div>
+            <div class="register">
+                <p>Don't you have an account ?<a href="http://localhost:3000/signin">Register</a></p>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+</html>

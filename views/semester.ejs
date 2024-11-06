@@ -1,0 +1,140 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            position: relative;
+            padding: 20px 0;
+            text-align: center;
+            background-color: black;
+            color: white;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .go-back {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: black;
+            background-color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .go-back:hover {
+            background-color: #bfbcbc;
+        }
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .main-content .box {
+            width: 48%;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .main-content .box h2 {
+            margin-bottom: 10px;
+        }
+        .main-content .box form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .main-content .box form button {
+            padding: 10px 15px;
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .main-content .box form button:hover {
+            background-color: #333;
+        }
+        .main-content .box a {
+            color: black;
+            text-decoration: none;
+        }
+        .main-content .box a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .main-content .box {
+                width: 100%;
+            }
+            header {
+                padding: 20px;
+            }
+            .go-back {
+                position: static;
+                margin-top: 10px;
+                display: inline-block;
+                background-color: transparent; /* Remove background in responsive view */
+                color: white;
+            }
+            header h1 {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Subjects in <%= semester.name %></h1>
+    <a href="/home" class="go-back">Go Back Home</a>
+</header>
+
+<div class="container">
+    <div class="main-content">
+        <!-- First div (Left side) -->
+        <div class="box">
+            <h2>Add a subject</h2>
+            <form action="/semester/<%= semester._id %>/add-subject" method="POST">
+              <input type="hidden" name="semesterId" placeholder="subject-name">
+              <input type="text" name="name" placeholder="Subject name" required>
+              <button type="submit">Submit</button>
+          </form>
+        </div>
+
+        <!-- Second div (Right side) -->
+        <div class="box">
+            <h2>Subjects</h2>
+            <% semester.subjects.forEach(subject => { %>
+            <a href="/subject/<%= subject._id %>"><%= subject.name %></a><br>
+            <% }) %>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

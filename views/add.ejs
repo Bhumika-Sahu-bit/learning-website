@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Note to <%= subject.name %></title>
+</head>
+<body>
+    <h1>Add Note to <%= subject.name %></h1>
+
+    <form action="/subject/<%= subject._id %>/add-note" method="POST" enctype="multipart/form-data">
+     
+      <label for="title">PDF Title:</label>
+        <input type="text" name="title" id="title" required>
+        
+        <label for="pdf">Choose PDF File:</label>
+        <input type="file" name="pdf" id="pdf" accept="application/pdf">
+      
+      <button type="submit">Add Note</button>
+    </form>
+    <a href="/subject/<%= subject._id %>">View Uploaded notes</a>
+</body>
+</html>

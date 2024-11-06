@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apni Library</title>
+    <link rel="stylesheet" href="/stylesheet/home.css"> 
+</head>
+<style>
+    
+
+</style>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <h2 style="color: #fff;">Apni Library</h2>
+        </div>
+        <div class="menu-btn" onclick="toggleMenu()">&#9776;</div> <!-- Menu button (hamburger icon) -->
+        <ul class="nav-links">
+            <li><a href="http://localhost:3000/home">Home</a></li>
+            <li><a href="http://localhost:3000/about">About</a></li>
+            <!-- <li><a href="http://localhost:3000/login">Favourite</a></li> -->
+            <li><a href="http://localhost:3000/signin">Sign-In</a></li>
+        </ul>
+    </nav>
+
+    <!-- Landing Page -->
+    <div class="main-page">
+    <div class="main-content">
+        <h1>Welcome to Apni Library</h1>
+        <p>Explore a vast collection of books, get recommendations, and enjoy a modern reading experience. Your journey to knowledge begins here.</p>
+        <button class="explore-btn">Explore More</button>
+        <div class="book-images">
+            <img src="/images/book1.jpg" alt="Book 1">
+            <img src="/images/book2.jpg" alt="Book 2">
+            <img src="/images/book3.jpg" alt="Book 3">
+        </div>
+    </div>
+        <div class="main-image">
+            <img src="/images/main-image2.png" alt="People Studying">
+        </div>
+    </div>
+     
+    <!-- //create new content // -->
+    <form method="GET" action="/home/index" class="button-container">
+        <button class="btn">Create New Content</button>
+    </form>
+
+    <div class="slider" style ="
+            --height:250px; 
+            --width : 200px;
+            --quantity:10;
+            ">
+        <div class="list">
+            <div class="item" style="--position: 1"><img src="/images/book1.jpg" alt="images"></div>
+            <div class="item" style="--position: 2"><img src="/images/book2.jpg" alt="images"></div>
+            <div class="item" style="--position: 3"><img src="/images/book3.jpg" alt="images"></div>
+            <div class="item" style="--position: 4"><img src="/images/book1.jpg" alt="images"></div>
+            <div class="item" style="--position: 5"><img src="/images/book2.jpg" alt="images"></div>
+            <div class="item" style="--position: 6"><img src="/images/book3.jpg" alt="images"></div>
+            <div class="item" style="--position: 7"><img src="/images/book1.jpg" alt="images"></div>   
+            <div class="item" style="--position: 8"><img src="/images/book2.jpg" alt="images"></div>
+            <div class="item" style="--position: 9"><img src="/images/book3.jpg" alt="images"></div>
+            <div class="item" style="--position: 10"><img src="/images/book1.jpg" alt="images"></div>
+        </div>
+             </div>
+  
+    <h1 class="data">Here your content of BCA</h1>        
+
+     <!-- Sections -->
+     
+            <div class="sections">
+                <% semesters.forEach(semester => { %>
+                    <div class="section"> 
+                        <a href="/semester/<%= semester._id %>"><%= semester.name %></a><br>
+                    </div>
+                <% }) %>
+            </div>
+        
+
+
+
+     <!-- Feedback Form -->
+     <div class="feedback-form">
+    <h2>Feedback</h2>
+    <form method="post" action="/home">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <textarea name="content" placeholder="Your feedback" required></textarea>
+        <button type="submit">Submit</button>
+    </form>
+        </div>
+
+    <!-- Footer -->
+    <footer>
+            <p>&copy; 2024 Apni Library. All rights reserved.</p>
+    </footer>
+
+    <script>
+            // JavaScript function to toggle menu
+            function toggleMenu() {
+                const navLinks = document.querySelector('.nav-links');
+                navLinks.classList.toggle('active');
+            }
+    </script>
+</body>
+</html>
